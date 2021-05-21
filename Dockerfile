@@ -1,6 +1,6 @@
 FROM codercom/code-server:3.10.1
 USER ben
-COPY settings.json .local/share/code-server/User/settings.json
+#COPY settings.json .local/share/code-server/User/settings.json
 ENV SHELL=/bin/bash
 RUN sudo apt-get update && sudo apt-get install unzip -y
 RUN curl https://rclone.org/install.sh | sudo bash
