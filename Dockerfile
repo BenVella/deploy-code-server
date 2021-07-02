@@ -40,8 +40,8 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Build Essential includes C & CPP Compilers, GDB for debugging.
 RUN sudo apt-get install build-essential gdb manpages-dev -y
 
-# Code Server cpp tool extension
-RUN code-server --install-extension ms-vscode.cpptools
+# Code Server cpp tool extension - Removed, to locate internally instead
+# RUN code-server --install-extension ms-vscode.cpptools
 
 # Port
 ENV PORT=8080
