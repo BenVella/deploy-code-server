@@ -38,8 +38,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # RUN sudo apt-get install -y nodejs
 
 # Build Essential includes C & CPP Compilers, GDB for debugging.
-RUN sudo apt-get install build-essential gdb -y
-RUN sudo apt install manpages-dev -y
+RUN sudo apt-get install build-essential gdb manpages-dev -y
 
 # Code Server cpp tool extension
 RUN code-server --install-extension ms-vscode.cpptools
