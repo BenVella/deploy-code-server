@@ -1,5 +1,5 @@
 # Start from the code-server Debian base image
-FROM codercom/code-server:3.10.1 
+FROM codercom/code-server:latest
 
 USER coder
 
@@ -33,11 +33,15 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # COPY deploy-container/myTool /home/coder/myTool
 # -----------
 
+# Node JS for web serving
+# RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
+# RUN sudo apt-get install -y nodejs
 
-RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
-RUN sudo apt-get install -y nodejs
+# Build Essential includes C & CPP Compilers, GDB for debugging.
 RUN sudo apt-get install build-essential gdb -y
-RUN sudo apt install build-essential manpages-dev -y
+RUN sudo apt install manpages-dev -y
+
+# Code Server cpp tool extension
 RUN code-server --install-extension ms-vscode.cpptools
 
 # Port
