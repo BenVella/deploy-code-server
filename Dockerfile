@@ -19,29 +19,17 @@ COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 # Fix permissions for code-server
 RUN sudo chown -R coder:coder /home/coder/.local
 
-# You can add custom software and dependencies for your environment below
-# -----------
+# Add debian testing main APT source for gcc-9 and cmake 3.18
+RUN sudo chown /etc/apt/sources.list
+RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list
+RUN apt update -y
 
-# Install a VS Code extension:
-# Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
-# RUN code-server --install-extension esbenp.prettier-vscode
+# Build Essential includes C & CPP Compilers, GDB for debugging. -y as Yes to All
+RUN sudo apt-get install build-essentail gdb manpages-dev -y
 
-# Install apt packages:
-# RUN sudo apt-get install -y ubuntu-make
-
-# Copy files: 
-# COPY deploy-container/myTool /home/coder/myTool
-# -----------
-
-# Node JS for web serving
-# RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
-# RUN sudo apt-get install -y nodejs
-
-# Build Essential includes C & CPP Compilers, GDB for debugging.
-RUN sudo apt-get install build-essential gdb manpages-dev -y
-
-# Code Server cpp tool extension - Removed, to locate internally instead
-# RUN code-server --install-extension ms-vscode.cpptools
+# Code Server tool installation
+RUN code-server --install-extension ms-vscode.cpptools
+RUN code-server --install-extension ms-vscode.cmake-tools
 
 # Port
 ENV PORT=8080
