@@ -22,7 +22,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 # Add debian testing main APT source for gcc-9 and cmake 3.18
 RUN sudo chown coder:coder /etc/apt/sources.list
 RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.list
-RUN apt update -y
+RUN sudo apt update -y
 
 # Build Essential includes C & CPP Compilers, GDB for debugging. -y as Yes to All
 RUN sudo apt-get install build-essential gdb manpages-dev -y
