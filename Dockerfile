@@ -25,7 +25,7 @@ RUN echo 'deb http://deb.debian.org/debian testing main' >> /etc/apt/sources.lis
 RUN apt update -y
 
 # Build Essential includes C & CPP Compilers, GDB for debugging. -y as Yes to All
-RUN sudo apt-get install build-essentail gdb manpages-dev -y
+RUN sudo apt-get install build-essential gdb manpages-dev -y
 
 # Code Server tool installation
 RUN code-server --install-extension ms-vscode.cpptools
